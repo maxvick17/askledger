@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AskLedger — Plain-English Small-Business Money Answers</title>
+<meta name="description" content="Ask a money question in plain English and get the answer with the working shown: break-even, runway, markup, margin. Runs entirely in your browser.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">Ask<span>Ledger</span></div>
+    <p class="tagline">Ask a money question in plain English. Get the answer — with the working shown.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="ask-card" aria-labelledby="ask-heading">
+    <h1 id="ask-heading">What do you need to know?</h1>
+    <form id="ask-form">
+      <label class="sr-only" for="question">Your money question</label>
+      <textarea id="question" rows="3" placeholder="e.g. I sell candles for $24 each. Each candle costs me $9 to make. My rent and other fixed costs are $2,700 a month. How many candles do I need to sell to break even?"></textarea>
+      <button type="submit" class="primary">Answer my question</button>
+    </form>
+    <div class="chips" aria-label="Example questions">
+      <span class="chips-label">Try one:</span>
+      <button type="button" class="chip" data-q="I sell candles for $24 each. Each candle costs me $9 to make. My rent and other fixed costs are $2,700 a month. How many candles do I need to sell to break even?">Break-even</button>
+      <button type="button" class="chip" data-q="I have $18,000 in the bank and I spend $3,000 a month more than I make. How long is my runway?">Runway</button>
+      <button type="button" class="chip" data-q="My product costs $40 to make. What price gives me a 60% markup?">Markup</button>
+      <button type="button" class="chip" data-q="What should I charge if a jacket costs me $55 and I want a 45% margin?">Margin price</button>
+      <button type="button" class="chip" data-q="I sell planners for $30, they cost $12 each, fixed costs are $4,500 a month, and I want $3,000 profit. How many do I need to sell?">Profit goal</button>
+    </div>
+  </section>
+
+  <section id="result" hidden aria-live="polite"></section>
+
+  <section class="guided-card" aria-labelledby="guided-heading">
+    <h2 id="guided-heading">Prefer a form? Use the guided calculators</h2>
+    <form id="guided-form">
+      <label for="calc-type">Calculator</label>
+      <select id="calc-type">
+        <option value="breakeven">Break-even / profit-goal units</option>
+        <option value="runway">Cash runway</option>
+        <option value="markup">Price from markup</option>
+        <option value="margin">Price from margin</option>
+        <option value="margininfo">What is my margin?</option>
+      </select>
+
+      <div class="fieldset" data-for="breakeven">
+        <label>Monthly fixed costs ($) <input type="number" id="g-fixed" min="0" step="any" placeholder="2700"></label>
+        <label>Selling price per unit ($) <input type="number" id="g-price" min="0" step="any" placeholder="24"></label>
+        <label>Cost per unit ($) <input type="number" id="g-cost" min="0" step="any" placeholder="9"></label>
+        <label>Target monthly profit ($, optional) <input type="number" id="g-target" min="0" step="any" placeholder="0"></label>
+      </div>
+      <div class="fieldset" data-for="runway" hidden>
+        <label>Cash on hand ($) <input type="number" id="g-cash" min="0" step="any" placeholder="18000"></label>
+        <label>Monthly shortfall — spending minus income ($) <input type="number" id="g-burn" min="0" step="any" placeholder="3000"></label>
+      </div>
+      <div class="fieldset" data-for="markup" hidden>
+        <label>Cost per unit ($) <input type="number" id="g-mcost" min="0" step="any" placeholder="40"></label>
+        <label>Markup (%) <input type="number" id="g-mpct" min="0" step="any" placeholder="60"></label>
+      </div>
+      <div class="fieldset" data-for="margin" hidden>
+        <label>Cost per unit ($) <input type="number" id="g-gcost" min="0" step="any" placeholder="55"></label>
+        <label>Target margin (%) <input type="number" id="g-gpct" min="0" max="99.9" step="any" placeholder="45"></label>
+      </div>
+      <div class="fieldset" data-for="margininfo" hidden>
+        <label>Selling price ($) <input type="number" id="g-ip" min="0" step="any" placeholder="200"></label>
+        <label>Cost per unit ($) <input type="number" id="g-ic" min="0" step="any" placeholder="50"></label>
+      </div>
+      <button type="submit" class="primary">Calculate</button>
+    </form>
+  </section>
+
+  <section class="how-card" aria-labelledby="how-heading">
+    <h2 id="how-heading">How it works</h2>
+    <p>AskLedger reads your question with a small natural-language engine that runs <strong>entirely in your browser</strong> — no accounts, no uploads, no data ever leaves your device. It works out what you are asking (break-even, runway, markup, margin), picks out the numbers and what each one means, runs the exact textbook formula, and then explains the answer in plain English with every step shown, so you can check the maths yourself.</p>
+    <p class="fineprint">AskLedger is an educational calculator, not financial advice. Figures are estimates based on the numbers you provide.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">AskLedger — built for SLAY HACKS 2026 · Original code, MIT licensed · 100% client-side</div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
